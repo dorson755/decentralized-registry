@@ -32,4 +32,43 @@ router.post('/add', async (req, res) => {
     }
 });
 
+// GET route to fetch all offenders
+router.get('/', async (req, res) => {
+    try {
+        const offenders = await Offender.find();  // Fetch all offenders
+        res.json(offenders);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// GET route to fetch an offender by offenderID
+router.get('/:offenderID', async (req, res) => {
+    try {
+        const offender = await Offender.findOne({ offenderID: req.params.offenderID });
+        if (!offender) {
+            return res.status(404).json({ error: 'Offender not found' });
+        }
+        res.json(offender);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// DELETE route to remove an offender by offenderID
+router.delete('/:offenderID', async (req, res) => {
+    try {
+        const result = await Offender.deleteOne({ offenderID: req.params.offenderID });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: 'Offender not found' });
+        }
+        res.json({ message: 'Offender removed successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;
