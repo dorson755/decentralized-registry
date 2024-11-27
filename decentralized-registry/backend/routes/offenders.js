@@ -32,13 +32,13 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// GET route to fetch all offenders
+// GET route to fetch offenders
 router.get('/', async (req, res) => {
     try {
-        const offenders = await Offender.find();  // Fetch all offenders
-        res.json(offenders);
-    } catch (err) {
-        console.error(err);
+        const offenders = await Offender.find();  // Assuming you're using Mongoose
+        res.status(200).json(offenders);
+    } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 });

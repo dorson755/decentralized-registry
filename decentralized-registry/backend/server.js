@@ -1,10 +1,20 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
+const path = require('path');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const offenderRoutes = require('./routes/offenders');  // Import the routes
 
 const app = express();
 app.use(express.json());
-app.use('/api/offenders', require('./routes/offenders'));
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());  // To parse incoming JSON data
+
+// Routes
+app.use('/api/offenders', offenderRoutes);  // Ensure your API routes are prefixed with '/api'
 
 connectDB();
 
