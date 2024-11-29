@@ -1,16 +1,22 @@
-const cors = require('cors');
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
-require('dotenv').config();
+const path = require('path');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const offenderRoutes = require('./routes/offenders');  // Import the routes
 
 const app = express();
-
-app.use(cors());  // Allow all origins by default
 app.use(express.json());
 
-connectDB();
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());  // To parse incoming JSON data
 
-app.use('/api/offenders', require('./routes/offenders'));
+// Routes
+app.use('/api/offenders', offenderRoutes);  // Ensure your API routes are prefixed with '/api'
+
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
