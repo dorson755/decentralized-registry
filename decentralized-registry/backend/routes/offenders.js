@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Offender = require('../models/Offender');  // Assuming you have the Offender model
+const Offender = require('../models/Offender'); // Assuming you have the Offender model
+const auth = require('../middleware/auth'); // Import the auth middleware
 
-// POST route to add an offender
-router.post('/add', async (req, res) => {
+// POST route to add an offender (secured with auth middleware)
+router.post('/add', auth, async (req, res) => {
     const { offenderID, name, courtProof, socialProof, addedBy } = req.body;
 
     // Check if all required fields are provided
@@ -18,7 +19,7 @@ router.post('/add', async (req, res) => {
             name,
             courtProof,
             socialProof,
-            addedBy
+            addedBy: req.user.userId, // Use user ID from the token
         });
 
         // Save the new offender to the database
@@ -32,10 +33,10 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// GET route to fetch offenders
-router.get('/', async (req, res) => {
+// GET route to fetch offenders (secured with auth middleware)
+router.get('/', auth, async (req, res) => {
     try {
-        const offenders = await Offender.find();  // Assuming you're using Mongoose
+        const offenders = await Offender.find(); // Assuming you're using Mongoose
         res.status(200).json(offenders);
     } catch (error) {
         console.error(error);
@@ -43,8 +44,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET route to fetch an offender by offenderID
-router.get('/:offenderID', async (req, res) => {
+// GET route to fetch an offender by offenderID (secured with auth middleware)
+router.get('/:offenderID', auth, async (req, res) => {
     try {
         const offender = await Offender.findOne({ offenderID: req.params.offenderID });
         if (!offender) {
@@ -57,8 +58,8 @@ router.get('/:offenderID', async (req, res) => {
     }
 });
 
-// DELETE route to remove an offender by offenderID
-router.delete('/:offenderID', async (req, res) => {
+// DELETE route to remove an offender by offenderID (secured with auth middleware)
+router.delete('/:offenderID', auth, async (req, res) => {
     try {
         const result = await Offender.deleteOne({ offenderID: req.params.offenderID });
         if (result.deletedCount === 0) {

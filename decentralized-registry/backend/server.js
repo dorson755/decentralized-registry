@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const offenderRoutes = require('./routes/offenders');  // Import the routes
+const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(bodyParser.json());  // To parse incoming JSON data
 
 // Routes
 app.use('/api/offenders', offenderRoutes);  // Ensure your API routes are prefixed with '/api'
+app.use('/api/auth', authRoutes);
 
 connectDB();
 
