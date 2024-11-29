@@ -18,32 +18,6 @@ router.post('/add', async (req, res) => {
             name,
             courtProof,
             socialProof,
-<<<<<<< HEAD
-            addedBy,
-        });
-
-        // Save the offender to the database
-        const savedOffender = await newOffender.save();
-        res.status(201).json(savedOffender);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ error: 'Failed to add offender. Server error.' });
-    }
-});
-
-// Route: Fetch all offenders
-router.get('/', async (req, res) => {
-    try {
-        const offenders = await Offender.find();
-        res.status(200).json(offenders);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ error: 'Failed to fetch offenders. Server error.' });
-    }
-});
-
-module.exports = router;
-=======
             addedBy
         });
 
@@ -98,4 +72,3 @@ router.delete('/:offenderID', async (req, res) => {
 });
 
 module.exports = router;
->>>>>>> d3503c9
