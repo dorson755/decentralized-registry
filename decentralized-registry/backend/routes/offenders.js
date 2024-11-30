@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Offender = require('../models/Offender'); // Assuming you have the Offender model
 const auth = require('../middleware/auth'); // Import the auth middleware
+const logger = require('../utils/logger'); // Import the logger
 
 // POST route to add an offender (secured with auth middleware)
 router.post('/add', auth, async (req, res) => {
@@ -28,7 +29,7 @@ router.post('/add', auth, async (req, res) => {
         // Return a success response
         res.status(201).json({ message: 'Offender added successfully', offender: newOffender });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 });
@@ -39,7 +40,7 @@ router.get('/', auth, async (req, res) => {
         const offenders = await Offender.find(); // Assuming you're using Mongoose
         res.status(200).json(offenders);
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 });
@@ -53,7 +54,7 @@ router.get('/:offenderID', auth, async (req, res) => {
         }
         res.json(offender);
     } catch (err) {
-        console.error(err);
+        logger.error(err);
         res.status(500).json({ error: 'Server error' });
     }
 });
@@ -67,7 +68,7 @@ router.delete('/:offenderID', auth, async (req, res) => {
         }
         res.json({ message: 'Offender removed successfully' });
     } catch (err) {
-        console.error(err);
+        logger.error(err);
         res.status(500).json({ error: 'Server error' });
     }
 });

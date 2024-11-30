@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const offenderRoutes = require('./routes/offenders');  // Import the routes
 const authRoutes = require('./routes/auth');
+const responseLogger = require('./middleware/responseLogger');
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.json());
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());  // To parse incoming JSON data
+app.use(responseLogger);
 
 // Routes
 app.use('/api/offenders', offenderRoutes);  // Ensure your API routes are prefixed with '/api'

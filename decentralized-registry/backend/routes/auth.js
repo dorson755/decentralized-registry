@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = express.Router();
+const logger = require('../utils/logger'); // Import the logger
+
 
 const JWT_SECRET = process.env.JWT_SECRET || 'service1'; // Replace with a strong secret
 
@@ -16,7 +18,7 @@ router.post(
         check('password', 'Password must be at least 6 characters').isLength({ min: 6 }),
     ],
     async (req, res) => {
-        console.log('Registration attempt:', req.body); // Log the incoming data
+        logger.info('Registration attempt:', req.body); // Log the incoming data
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -71,7 +73,7 @@ router.post(
 
             res.json({ token });
         } catch (err) {
-            console.error(err);
+            logger.error(err);
             res.status(500).send('Server error');
         }
     }

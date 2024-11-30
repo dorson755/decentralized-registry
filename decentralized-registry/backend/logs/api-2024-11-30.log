@@ -1,0 +1,60 @@
+[2024-11-30T05:54:38.797Z] [32minfo[39m: Response sent
+{
+  "method": "GET",
+  "url": "/api/offenders/hedlon",
+  "statusCode": 401,
+  "responseBody": "{\"message\":\"Token is not valid\"}",
+  "requestBody": {},
+  "queryParams": {},
+  "headers": {
+    "accept": "*/*",
+    "host": "localhost:5000",
+    "user-agent": "PostmanRuntime/7.43.0",
+    "accept-encoding": "gzip, deflate, br",
+    "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRhODM1MzZjZjZkZWE1NzY4NThjOWEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjk0MTI1MSwiZXhwIjoxNzMyOTQ0ODUxfQ.7ut6Ofb7PLGQMe3TF6QOmv7VEYVwUm3_DJAC1ixjwXI",
+    "x-request-id": "3578b86b66750b4b1135b061c9d3c78b",
+    "x-real-ip": "10.240.0.199",
+    "x-forwarded-port": "443",
+    "x-forwarded-scheme": "https",
+    "x-original-uri": "/api/offenders/hedlon",
+    "x-scheme": "https",
+    "postman-token": "f45ef074-be37-4a04-acd6-3b7152b4f011",
+    "x-original-proto": "https",
+    "x-forwarded-proto": "https",
+    "x-forwarded-host": "effective-telegram-g664659pgqp2wj4j-5000.app.github.dev",
+    "x-forwarded-for": "10.240.0.199",
+    "proxy-connection": "Keep-Alive"
+  }
+}
+[2024-11-30T05:55:10.312Z] [32minfo[39m: Response sent
+{
+  "method": "POST",
+  "url": "/api/auth/login",
+  "statusCode": 200,
+  "responseBody": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRhODM1MzZjZjZkZWE1NzY4NThjOWEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjk0NjExMCwiZXhwIjoxNzMyOTQ5NzEwfQ.QNfQg4ehH5j_xCRf9sytAkoE2jLUs7syNmpSZCAvm6w\"}",
+  "requestBody": {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  },
+  "queryParams": {},
+  "headers": {
+    "accept": "*/*",
+    "host": "localhost:5000",
+    "user-agent": "PostmanRuntime/7.43.0",
+    "accept-encoding": "gzip, deflate, br",
+    "x-request-id": "15a80d0d0f58b917d512dbf04ca883e0",
+    "x-real-ip": "10.240.0.199",
+    "x-forwarded-port": "443",
+    "x-forwarded-scheme": "https",
+    "x-original-uri": "/api/auth/login",
+    "x-scheme": "https",
+    "postman-token": "b775d143-1d70-4930-8e05-99721b812307",
+    "x-original-proto": "https",
+    "x-forwarded-proto": "https",
+    "x-forwarded-host": "effective-telegram-g664659pgqp2wj4j-5000.app.github.dev",
+    "x-forwarded-for": "10.240.0.199",
+    "proxy-connection": "Keep-Alive",
+    "content-type": "application/json",
+    "content-length": "75"
+  }
+}
